@@ -66,7 +66,9 @@ Az `install.sh` symlinkeli a saját fájlokat a `~/.claude`-ba, felírja a `sett
 
 ## További tippek (kézzel)
 
-- A claude.ai fiókodban bekapcsolt pluginek (sales, finance, legal, HR, bio-research, brand-voice stb.) és connectorok is minden sessionben tokent visznek. Amit nem használsz, azt kapcsold ki a Claude appban (Customize / Connectors).
+- A claude.ai fiókról szinkronizált céges pluginek (sales, finance, legal, HR, bio-research, brand-voice stb.) a `settings.json`-ban `"<név>@synced": false` értékkel ki vannak kapcsolva a Claude Code-ban, a chatben elérhetők maradnak. Új plugin esetén: `claude plugin disable <név>@synced`, utána `scripts/sync-settings.sh`.
+- A nem kellő claude.ai connectorokat (Vercel MCP, az elavult Cloudflare bindings, Spotify, Stripe, Three.js demó) a `deniedMcpServers` blokkolja URL alapján. A Gmail, Calendar, Drive, Sheets, Docs és ClickUp aktív marad. Ha ezeket sem használod kódolás közben, vedd fel őket ugyanide.
+- A Control Chrome asztali bővítményt a Claude appban kell kikapcsolni (Settings → Extensions), mert a beépített böngésző és a Claude in Chrome ugyanazt tudja.
 - Opcionálisan: [rtk](https://github.com/rtk-ai/rtk) tömöríti a parancskimeneteket (`brew install rtk && rtk init -g`). Nincs benne alapból, mert minden bash parancsot átír.
 
 ## Hitelesítés

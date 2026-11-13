@@ -1,22 +1,10 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "model": "opus",
-  "effortLevel": "high",
-  "modelSettings": {
-    "claude-opus-5-5": { "effortLevel": "high" }
-  },
-  "theme": "auto",
-  "tui": "fullscreen",
-  "attribution": { "commit": "", "pr": "", "sessionUrl": false },
   "cleanupPeriodDays": 90,
-  "skipWorkflowUsageWarning": true,
-  "switchModelsOnFlag": false,
-  "agentPushNotifEnabled": true,
-  "enableAllProjectMcpServers": false,
-  "statusLine": {
-    "type": "command",
-    "command": "bash \"$HOME/.claude/statusline.sh\"",
-    "padding": 0
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
   },
   "permissions": {
     "allow": [
@@ -82,12 +70,18 @@
       "Bash(sudo *)"
     ]
   },
+  "model": "opus",
+  "enableAllProjectMcpServers": false,
   "hooks": {
     "PreToolUse": [
       {
         "matcher": "Bash",
         "hooks": [
-          { "type": "command", "command": "bash \"$HOME/.claude/hooks/guard-bash.sh\"", "timeout": 5 }
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/guard-bash.sh\"",
+            "timeout": 5
+          }
         ]
       }
     ],
@@ -95,41 +89,63 @@
       {
         "matcher": "Edit|Write|MultiEdit",
         "hooks": [
-          { "type": "command", "command": "bash \"$HOME/.claude/hooks/format-queue.sh\" add", "timeout": 5 }
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/format-queue.sh\" add",
+            "timeout": 5
+          }
         ]
       }
     ],
     "Stop": [
       {
         "hooks": [
-          { "type": "command", "command": "bash \"$HOME/.claude/hooks/format-queue.sh\" flush", "timeout": 60 },
-          { "type": "command", "command": "bash \"$HOME/.claude/hooks/auto-push.sh\"", "timeout": 60 },
-          { "type": "command", "command": "bash \"$HOME/.claude/hooks/team-sync.sh\" stop", "timeout": 90 }
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/format-queue.sh\" flush",
+            "timeout": 60
+          },
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/auto-push.sh\"",
+            "timeout": 60
+          },
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/team-sync.sh\" stop",
+            "timeout": 90
+          }
         ]
       }
     ],
     "UserPromptSubmit": [
       {
         "hooks": [
-          { "type": "command", "command": "bash \"$HOME/.claude/hooks/team-sync.sh\" prompt", "timeout": 30 }
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/team-sync.sh\" prompt",
+            "timeout": 30
+          }
         ]
       }
     ],
     "Notification": [
       {
         "hooks": [
-          { "type": "command", "command": "bash \"$HOME/.claude/hooks/notify.sh\"", "timeout": 5, "async": true }
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/notify.sh\"",
+            "timeout": 5,
+            "async": true
+          }
         ]
       }
     ]
   },
-  "extraKnownMarketplaces": {
-    "claude-plugins-official": { "source": { "source": "github", "repo": "anthropics/claude-plugins-official" } },
-    "vercel": { "source": { "source": "github", "repo": "vercel/vercel-plugin" } },
-    "impeccable": { "source": { "source": "github", "repo": "pbakaus/impeccable" } },
-    "hallmark": { "source": { "source": "github", "repo": "Nutlope/hallmark" } },
-    "agricidaniel-claude-seo": { "source": { "source": "github", "repo": "AgriciDaniel/claude-seo" } },
-    "cloudflare": { "source": { "source": "github", "repo": "cloudflare/skills" } }
+  "statusLine": {
+    "type": "command",
+    "command": "bash \"$HOME/.claude/statusline.sh\"",
+    "padding": 0
   },
   "enabledPlugins": {
     "vercel-plugin@vercel": true,
@@ -143,6 +159,97 @@
     "pyright-lsp@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": true
-  }
+    "code-simplifier@claude-plugins-official": true,
+    "sales@synced": false,
+    "operations@synced": false,
+    "design@synced": false,
+    "human-resources@synced": false,
+    "engineering@synced": false,
+    "common-room@synced": false,
+    "apollo@synced": false,
+    "slack-by-salesforce@synced": false,
+    "bio-research@synced": false,
+    "legal@synced": false,
+    "product-management@synced": false,
+    "productivity@synced": false,
+    "marketing@synced": false,
+    "finance@synced": false,
+    "enterprise-search@synced": false,
+    "data@synced": false,
+    "customer-support@synced": false,
+    "brand-voice@synced": false,
+    "cowork-plugin-management@synced": false
+  },
+  "extraKnownMarketplaces": {
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    },
+    "vercel": {
+      "source": {
+        "source": "github",
+        "repo": "vercel/vercel-plugin"
+      }
+    },
+    "impeccable": {
+      "source": {
+        "source": "github",
+        "repo": "pbakaus/impeccable"
+      }
+    },
+    "hallmark": {
+      "source": {
+        "source": "github",
+        "repo": "Nutlope/hallmark"
+      }
+    },
+    "agricidaniel-claude-seo": {
+      "source": {
+        "source": "github",
+        "repo": "AgriciDaniel/claude-seo"
+      }
+    },
+    "cloudflare": {
+      "source": {
+        "source": "github",
+        "repo": "cloudflare/skills"
+      }
+    }
+  },
+  "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
+  "tui": "fullscreen",
+  "skipWorkflowUsageWarning": true,
+  "theme": "auto",
+  "switchModelsOnFlag": false,
+  "agentPushNotifEnabled": true,
+  "deniedMcpServers": [
+    {
+      "serverUrl": "https://mcp.vercel.com"
+    },
+    {
+      "serverUrl": "https://mcp.vercel.com/*"
+    },
+    {
+      "serverUrl": "https://bindings.mcp.cloudflare.com/*"
+    },
+    {
+      "serverUrl": "https://mcp-gateway-external-pilot.spotify.net/*"
+    },
+    {
+      "serverUrl": "https://example-server.modelcontextprotocol.io/*"
+    },
+    {
+      "serverUrl": "https://mcp.stripe.com"
+    },
+    {
+      "serverUrl": "https://mcp.stripe.com/*"
+    }
+  ]
 }

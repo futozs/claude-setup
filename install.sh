@@ -80,7 +80,7 @@ if command -v claude >/dev/null 2>&1; then
     claude plugin marketplace add "$mp" >/dev/null 2>&1 || true
   done
   claude plugin marketplace update >/dev/null 2>&1 || true
-  jq -r '.enabledPlugins | keys[]' "$REPO/settings.json" | while read -r p; do
+  jq -r '.enabledPlugins | to_entries[] | select(.value == true) | .key' "$REPO/settings.json" | while read -r p; do
     if claude plugin install "$p" --scope user >/dev/null 2>&1; then echo "   $p"; else warn "plugin install failed: $p"; fi
   done
 else
