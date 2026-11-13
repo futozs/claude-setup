@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "model": "opus",
+  "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5-5": { "effortLevel": "high" }
+  },
+  "theme": "auto",
+  "tui": "fullscreen",
+  "attribution": { "commit": "", "pr": "", "sessionUrl": false },
+  "cleanupPeriodDays": 90,
+  "skipWorkflowUsageWarning": true,
+  "switchModelsOnFlag": false,
+  "agentPushNotifEnabled": true,
+  "enableAllProjectMcpServers": false,
+  "statusLine": {
+    "type": "command",
+    "command": "bash \"$HOME/.claude/statusline.sh\"",
+    "padding": 0
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git show*)",
+      "Bash(git branch*)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push)",
+      "Bash(git push -u origin *)",
+      "Bash(git pull*)",
+      "Bash(git fetch*)",
+      "Bash(git switch *)",
+      "Bash(git checkout -b *)",
+      "Bash(git stash*)",
+      "Bash(gh pr *)",
+      "Bash(gh repo view*)",
+      "Bash(gh api *)",
+      "Bash(bun run *)",
+      "Bash(bun test*)",
+      "Bash(bun install*)",
+      "Bash(bunx tsc*)",
+      "Bash(npm run *)",
+      "Bash(npx tsc*)",
+      "Bash(pnpm run *)",
+      "Bash(npx prisma *)",
+      "Bash(bunx prisma *)",
+      "Bash(cargo check*)",
+      "Bash(cargo test*)",
+      "Bash(cargo clippy*)",
+      "Bash(uv run *)",
+      "Bash(pytest*)",
+      "Bash(ruff *)",
+      "Bash(ls*)",
+      "Bash(tree *)",
+      "Bash(wc *)",
+      "Bash(which *)",
+      "Bash(jq *)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:nextjs.org)",
+      "WebFetch(domain:react.dev)",
+      "WebFetch(domain:tailwindcss.com)",
+      "WebFetch(domain:developers.cloudflare.com)",
+      "WebFetch(domain:vercel.com)",
+      "WebFetch(domain:www.prisma.io)",
+      "WebFetch(domain:code.claude.com)",
+      "WebFetch(domain:developer.mozilla.org)"
+    ],
+    "deny": [
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.gnupg/**)",
+      "Read(~/.config/gh/hosts.yml)",
+      "Read(~/.npmrc)",
+      "Read(~/.netrc)",
+      "Read(~/Library/Keychains/**)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git reset --hard origin/*)",
+      "Bash(sudo *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "bash \"$HOME/.claude/hooks/guard-bash.sh\"", "timeout": 5 }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          { "type": "command", "command": "bash \"$HOME/.claude/hooks/format-queue.sh\" add", "timeout": 5 }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash \"$HOME/.claude/hooks/format-queue.sh\" flush", "timeout": 60 },
+          { "type": "command", "command": "bash \"$HOME/.claude/hooks/auto-push.sh\"", "timeout": 60 },
+          { "type": "command", "command": "bash \"$HOME/.claude/hooks/team-sync.sh\" stop", "timeout": 90 }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash \"$HOME/.claude/hooks/team-sync.sh\" prompt", "timeout": 30 }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash \"$HOME/.claude/hooks/notify.sh\"", "timeout": 5, "async": true }
+        ]
+      }
+    ]
+  },
+  "extraKnownMarketplaces": {
+    "claude-plugins-official": { "source": { "source": "github", "repo": "anthropics/claude-plugins-official" } },
+    "vercel": { "source": { "source": "github", "repo": "vercel/vercel-plugin" } },
+    "impeccable": { "source": { "source": "github", "repo": "pbakaus/impeccable" } },
+    "hallmark": { "source": { "source": "github", "repo": "Nutlope/hallmark" } },
+    "agricidaniel-claude-seo": { "source": { "source": "github", "repo": "AgriciDaniel/claude-seo" } },
+    "cloudflare": { "source": { "source": "github", "repo": "cloudflare/skills" } }
+  },
+  "enabledPlugins": {
+    "vercel-plugin@vercel": true,
+    "impeccable@impeccable": true,
+    "hallmark@hallmark": true,
+    "claude-seo@agricidaniel-claude-seo": true,
+    "cloudflare@cloudflare": true,
+    "mattpocock-skills@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true
+  }
+}
