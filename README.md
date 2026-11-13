@@ -3,8 +3,8 @@
 Saját Claude Code konfiguráció: karcsú, gyors, és arra hangolva, hogy a kimenet ne legyen „AI-ízű”, se kódban, se dizájnban, se szövegben. Egy paranccsal visszaállítható bármelyik Macen.
 
 ```bash
-git clone https://github.com/futozs/claude-setup.git ~/claude-setup
-cd ~/claude-setup && ./install.sh
+git clone https://github.com/futozs/claude-setup.git ~/Developer/personal/claude-setup
+cd ~/Developer/personal/claude-setup && ./install.sh
 ```
 
 Az `install.sh` symlinkeli a saját fájlokat a `~/.claude`-ba, felírja a `settings.json`-t, lehúzza a külső skilleket és plugineket, és feltelepíti a language servereket. Bármit, amit felülír, előtte elment a `~/claude-backups/<időbélyeg>/` mappába. Bármikor újrafuttatható. Ha csak a linkeket akarod frissíteni hálózat nélkül: `./install.sh --links`.
