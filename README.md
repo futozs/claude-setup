@@ -71,6 +71,11 @@ Az `install.sh` symlinkeli a saját fájlokat a `~/.claude`-ba, felírja a `sett
 - A Control Chrome asztali bővítményt a Claude appban kell kikapcsolni (Settings → Extensions), mert a beépített böngésző és a Claude in Chrome ugyanazt tudja.
 - Opcionálisan: [rtk](https://github.com/rtk-ai/rtk) tömöríti a parancskimeneteket (`brew install rtk && rtk init -g`). Nincs benne alapból, mert minden bash parancsot átír.
 
+## Kapcsolódó
+
+- [dotfiles](https://github.com/futozs/dotfiles): a teljes Mac setup (appok, shell, terminál, git); a `./install.sh --all` ezt a repót is telepíti
+- [vscode-setup](https://github.com/futozs/vscode-setup): a VS Code beállításaim
+
 ## Hitelesítés
 
 A `agents/` reviewerek az [Everything Claude Code](https://github.com/affaan-m/ECC) agentjeiből lettek átírva (MIT). A külső skillek és pluginek a saját repójukból települnek, nincsenek bemásolva ide.
