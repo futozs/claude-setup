@@ -7,7 +7,7 @@ git clone https://github.com/futozs/claude-setup.git ~/Developer/personal/claude
 cd ~/Developer/personal/claude-setup && ./install.sh
 ```
 
-Az `install.sh` symlinkeli a saját fájlokat a `~/.claude`-ba, felírja a `settings.json`-t, lehúzza a külső skilleket és plugineket, és feltelepíti a language servereket. Bármit, amit felülír, előtte elment a `~/claude-backups/<időbélyeg>/` mappába. Bármikor újrafuttatható. Ha csak a linkeket akarod frissíteni hálózat nélkül: `./install.sh --links`.
+Az `install.sh` symlinkeli a saját fájlokat a `~/.claude`-ba, felírja a `settings.json`-t, lehúzza a külső skilleket és plugineket, és feltelepíti a language servereket. Bármit, amit felülír, előtte elment a `~/Documents/Backups/claude-setup/<időbélyeg>/` mappába. Bármikor újrafuttatható. Ha csak a linkeket akarod frissíteni hálózat nélkül: `./install.sh --links`.
 
 ## Filozófia
 

@@ -2,13 +2,13 @@
 # Install this Claude Code setup into ~/.claude.
 #   ./install.sh            full install (links, settings, skills, plugins, language servers)
 #   ./install.sh --links    only (re)create symlinks + settings, skip network steps
-# Safe to re-run. Anything it replaces is moved to ~/claude-backups/<timestamp>/ first.
+# Safe to re-run. Anything it replaces is moved to ~/Documents/Backups/claude-setup/<timestamp>/ first.
 set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CLAUDE_DIR="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
 STAMP="$(date +%Y%m%d-%H%M%S)"
-BACKUP="$HOME/claude-backups/$STAMP"
+BACKUP="$HOME/Documents/Backups/claude-setup/$STAMP"
 LINKS_ONLY=0; [ "${1:-}" = "--links" ] && LINKS_ONLY=1
 
 say() { printf '\033[1m==>\033[0m %s\n' "$*"; }
